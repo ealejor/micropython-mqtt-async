@@ -1,3 +1,3 @@
-class MQTTBse:
+class BaseAsync:
     def __init__(self):
         pass
