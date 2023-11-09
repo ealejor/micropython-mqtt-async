@@ -1,7 +1,7 @@
-from src.base import BaseAsync
+from src.base import AsyncBase
 import usocket as socket
 
 
-class ClientAsync(BaseAsync):
+class AsyncClient(AsyncBase):
     def __init__(self):
-        pass
+        super().__init__()
