@@ -20,6 +20,10 @@ class MQTTClient(AsyncBase):
         self.__subscritions.append(topic)
 
     async def disconnect(self):
+        """
+        Desconecta el cliente del intermediario
+        :return:
+        """
         try:
             async with self.__lock:
                 self.__sock.write(b"\xe0\0")
@@ -151,7 +155,11 @@ class MQTTClient(AsyncBase):
             s.close()
         return False
 
-    async def broker_up(self):  # Probar la conectividad del intermediario
+    async def broker_up(self):
+        """
+        Prueba de conectividad del intermediario
+        :return:
+        """
         if not self.isconnected():
             return False
         tlast = self.__last_rx

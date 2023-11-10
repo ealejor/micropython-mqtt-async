@@ -13,7 +13,7 @@ from network import WLAN, STA_IF
 gc.collect()
 
 
-class MQTTException(Exception):
+class AsyncException(Exception):
     pass
 
 
@@ -116,6 +116,16 @@ class AsyncBase:
         self.__lw_retain = retain
 
     def confing(self, ssid, pwd, red, green, blue, debug):
+        """
+        config
+        :param ssid:
+        :param pwd:
+        :param red:
+        :param green:
+        :param blue:
+        :param debug:
+        :return:
+        """
         self.__ssid = ssid
         self.__pwd = pwd
         self.__debug = debug
@@ -296,7 +306,7 @@ class AsyncBase:
         if qos > 0:
             size += 2
         if size >= 2097152:
-            raise MQTTException('Strings too long.')
+            raise AsyncException('Strings too long.')
 
         i = await self.__encode(size, pkt)
 
